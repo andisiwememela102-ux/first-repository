@@ -1,52 +1,44 @@
 START  
- SET Largest = 0 
-   loop indefinely
- Display " Enter a positive number (0 to stop)
-  Input Number
-if user input = 0 then
- break
-if largest number= None OR user input> largest number then
-  largest number < user input 
-END IF
- END loop
+ SET largest TO 0
+   PRINT " Enter a positive number ( 0 to stop):"
+ INPUT number
+  WHILE number != 0 DO
+IF number > largest THEN
+ SET largest TO number
+ENDIF
+PRINT "Enter a positive number ( 0 to stop):"
+  INPUT number
+  ENDWHILE
+IF largest > 0 THEN
+PRINT " The largest number entered is : ", largest
+ELSE
+PRINT "No positive numbers were entered."
+  ENDIF
+ END
 
 BEGIN
- //Prompt the user to enter their name
-DISPLAY "Please enter your name"
-  READ first_name
-
-//combine the user's name with the greeting
-Print "first_name" + "Hello World"
-
-//Output the final message
-DISPLAY greeting_message 
+ OUTPUT " Please enter your name:"
+ INPUT "ANDY"
+Print "first_name + "Hello, World"
  END
 
 
-//Initialize accumulators
+BEGIN
+
 Sum = 0
 count = 0
 
-//Read integers until no more input available loop
-value - Read Next  Integer
-if End of input ( value) then
-break
-endif
+Read integers from input
 
-//update accumulators 
-sum - sum + value
-count - count + 1
-  end loop
+while input is not empty
+  sum= sum + integer
+  count = count + 1
+ read integer from input 
 
-//compute average if at least one number was provided
-if count > 0 then
- average - sum / count
- else 
- average - Undefined  //  Or 0, depending on requirements
- endif 
+average = sum / count
 
- //Return or display the result
- Return average
+return average
+END 
 
 
 BEGIN
@@ -61,7 +53,8 @@ END
 
 
 START
- Display X , Y
+
+ READ X , Y
  
 Calculate S = X + Y
 Calculate A = S / 2
