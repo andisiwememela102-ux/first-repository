@@ -18,8 +18,8 @@ PRINT "No positive numbers were entered."
 
 BEGIN
  OUTPUT " Please enter your name:"
- INPUT "ANDY"
-Print "first_name + "Hello, World"
+ INPUT "Andy"
+Print first_name + "Hello, World"
  END
 
 
