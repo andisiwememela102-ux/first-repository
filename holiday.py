@@ -7,11 +7,11 @@ def plane_cost(city_flight):
     city = city_flight.strip().lower()
 
 
-    if city == "Paris":
+    if city == "paris":
         return 7500
-    elif city == "London":
+    elif city == "london":
         return 5600
-    elif city == "Italy":
+    elif city == "italy":
         return 10000
     else:
         #Default price if they type a city not explicitly listed
@@ -29,7 +29,7 @@ def holiday_cost(num_nights, city_flight, rental_days):
     total_car = car_rental( rental_days)
 
     # Calculate and return total combined cost
-    return total_hotel + total_flight * total_car
+    return total_hotel + total_flight + total_car
 
 
 # --- Main Program Execution ---
