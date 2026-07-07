@@ -6,12 +6,12 @@ class Email:
         # New emails default to unread
         self.has_been_read = False
 
-    def mark_as_read(self):
+
+def mark_as_read(self):
         """
         Updates the 'has_been_read' attribute from False to True.
         """
         self.has_been_read = True
-
 
 
 # Global inbox list to store Email objects
