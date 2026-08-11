@@ -1,0 +1,11 @@
+USER OVERVIEW
+=============
+Total number of registered users: 1
+Total number of tasks: 4
+
+User: admin
+  Tasks assigned: 4
+  Percentage of total tasks: 100.00%
+  Percentage completed: 100.00%
+  Percentage still incomplete: 0.00%
+  Percentage incomplete and overdue: 0.00%
