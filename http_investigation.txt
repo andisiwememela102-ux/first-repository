@@ -1,0 +1,119 @@
+HTTP Investigation
+==================
+
+
+Practical Task: Network Protocols and System Architecture
+
+1. BASIC REQUEST ANALYSIS
+-------------------------
+
+Command used with curl:
+
+curl -v https://postman-echo.com/get
+
+I used curl with the -v option so that I could see more information about the HTTP communication. The request was sent to the Postman Echo GET endpoint.
+
+Request headers observed:
+- GET was used as the HTTP method.
+- The Host header identified postman-echo.com as the server.
+- A User-Agent header identified curl as the client.
+- An Accept header indicated what type of response the client could accept.
+
+Response headers observed:
+- The server returned a successful HTTP response.
+- The status code was 200 OK.
+- The response included HTTP response headers and a response body.
+- The response body contained information about the request that was sent to the echo service.
+
+Connection workflow:
+1. curl acted as the client.
+2. curl connected to the Postman Echo server using HTTPS.
+3. curl sent a GET request to the /get endpoint.
+4. The server received and processed the request.
+5. The server sent an HTTP response back to curl.
+6. curl displayed the response information in the terminal.
+
+My main takeaway from this section is that HTTP follows a request/response process. The client sends a request and the server processes it before sending a response back.
+
+
+2. METHOD INTERACTION
+---------------------
+
+Command used with curl:
+
+curl -X POST https://postman-echo.com/post \
+  -d "key=value" \
+  -H "Content-Type: application/x-www-form-urlencoded"
+
+For this test I used POST instead of GET. The main difference I noticed is that POST allows data to be sent to the server in the request body.
+
+The payload I sent was:
+
+key=value
+
+The -d option was used to send this data. The Content-Type header told the server that the data was being sent as application/x-www-form-urlencoded.
+
+The server's response reflected the information that was sent in the request. This made it possible to see that the server had received the key=value data.
+
+Compared with GET, POST is useful when the client needs to send data to the server. GET is generally used to request information, while POST sends information as part of the request.
+
+ HTTP methods have different purposes. The method used by the client tells the server how the request should be handled.
+
+
+3. STATUS CODE EXPLORATION
+--------------------------
+
+Command used:
+
+curl -I https://postman-echo.com/status/404
+
+The response returned the status code:
+
+404 Not Found
+
+A 404 status means that the requested resource could not be found. This could happen if a URL points to a resource that does not exist or the requested resource is not available at that location.
+
+The status code was included in the HTTP response headers. This allows the client to understand what happened with the request without needing to rely only on the response body.
+
+
+Second command used:
+
+curl -I https://postman-echo.com/status/403
+
+The response returned the status code:
+
+403 Forbidden
+
+A 403 status means that the server understood the request but access to the requested resource is forbidden. It indicates that there is an access restriction.
+
+The 403 status was also communicated in the HTTP response headers.
+
+The difference between the two errors is important:
+- 404 means the requested resource was not found.
+- 403 means access to the requested resource is forbidden.
+
+ HTTP status codes are useful for understanding the result of a request. The 400-series status codes indicate client errors, and different codes give more specific information about what went wrong.
+
+
+4. KEY OBSERVATIONS AND TAKEAWAYS
+---------------------------------
+
+This practical helped me understand how HTTP communication works between a client and a server.
+
+I learned that:
+
+- A client sends an HTTP request to a server.
+- The server processes the request and sends an HTTP response.
+- HTTP requests and responses contain headers that provide additional information.
+- GET can be used to request data from a server.
+- POST can be used to send data to a server.
+- A payload is the data included with a request, such as key=value.
+- The Content-Type header tells the server what format the request data uses.
+- HTTP status codes communicate the result of a request.
+- 200 OK indicates a successful request.
+- 404 Not Found means that the requested resource could not be found.
+- 403 Forbidden means that access to the requested resource is forbidden.
+- The -v option in curl is useful for seeing detailed request and response information.
+- The -I option can be used to inspect HTTP response headers.
+
+Overall, the practical made it easier for me to understand what happens behind the scenes when a client communicates with a web server. Instead of only seeing a webpage in a browser, I could use curl to see the request, response, headers and status codes involved in the communication.
