@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Andy's Boutique</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* Page styling */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .store-title {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        /* Product cards */
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Product image */
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+
+            transition: transform 0.3s ease;
+        }
+
+        /* Image hover effect */
+        .product-image:hover {
+            transform: scale(1.08);
+        }
+
+        .product-name {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .price {
+            color: #198754;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: white;
+            margin-top: 50px;
+            padding: 35px 0;
+        }
+
+        .company-logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-dark text-white text-center py-4">
+        <h1>Andy's Boutique</h1>
+        <p class="mb-0">Quality products at affordable prices</p>
+    </header>
+
+
+    <!-- Main content -->
+    <main class="container">
+
+        <h2 class="store-title">Our Products</h2>
+
+        <!-- Bootstrap grid -->
+        <div class="row g-4">
+
+            <!-- Product 1 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://tse1.mm.bing.net/th/id/OIP.1hj-ioDVf20VRldErIx01QHaHS?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Nike shoes"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Nike shoes</h3>
+                    <p class="price">R1600.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 2 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://tse1.explicit.bing.net/th/id/OIP.lGXl52SRYd7oop6QOBNaHwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Wrist Watch"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Wrist Watch</h3>
+                    <p class="price">R809.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 3 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://tse1.mm.bing.net/th/id/OIP.yhkLTX818vi01xCkvRu7dwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Sony Headphones"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Sony Headphones</h3>
+                    <p class="price">R3000.00</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 4 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://tse3.mm.bing.net/th/id/OIP.CWT7etEZM2EPhsFK5Ry5owHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Camera"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Camera</h3>
+                    <p class="price">R399.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 5 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://www.tradeinn.com/f/14270/142702984/fitbit-charge-6-smartwatch.webp"
+                        alt="Smart Watch"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Smart Watch</h3>
+                    <p class="price">R1290.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 6 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://tse1.explicit.bing.net/th/id/OIP.Vm6ayjISgWdcn1_cqHuLXwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Steven Madden Heels"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Steven Madden Heels</h3>
+                    <p class="price">R2500.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 7 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://i.pinimg.com/originals/55/a3/41/55a341675bfc7cca84ccd093240de431.jpg"
+                        alt="Gold Jewelry"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Gold Jewelry</h3>
+                    <p class="price">R599.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 8 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://image.lensmartonline.com/2022-04-07/16493076467561.jpg?imageView2/2/interlace/1/format/webp/w/2400"
+                        alt="Sunglasses"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Sunglasses</h3>
+                    <p class="price">R1500</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 9 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://galxboy.co.za/cdn/shop/products/image_825958af-fb32-40fa-a5be-4cb823ae05bd_770x770_crop_center.jpg?v=1665141483"
+                        alt="Galxboy T-Shirt"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Galxboy T-Shirt</h3>
+                    <p class="price">R2400</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product 10 -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="product-card text-center">
+                    <img
+                        src="https://tse1.mm.bing.net/th/id/OIP.lQGS1GlYPs8TrsbgX3E3CwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="Luxury Bags"
+                        class="img-fluid product-image"
+                    >
+
+                    <h3 class="product-name">Luxury Bags</h3>
+                    <p class="price">R799.99</p>
+
+                    <button class="btn btn-primary w-100">
+                        Buy
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <!-- Company logo -->
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                    <div class="company-logo">
+                        ShopEasy
+                    </div>
+
+                    <small>Andy's Boutique</small>
+                </div>
+
+
+                <!-- Contact form -->
+                <div class="col-md-9">
+
+                    <h4>Contact Us</h4>
+
+                    <form class="row g-2">
+
+                        <div class="col-md-4">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Your Name"
+                            >
+                        </div>
+
+                        <div class="col-md-4">
+                            <input
+                                type="email"
+                                class="form-control"
+                                placeholder="Email Address"
+                            >
+                        </div>
+
+                        <div class="col-md-4">
+                            <input
+                                type="tel"
+                                class="form-control"
+                                placeholder="Phone Number"
+                            >
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Submit
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p class="text-center mb-0">
+                &copy; 2026 ShopEasy. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+</html>
