@@ -1,0 +1,68 @@
+TASK MANAGER APPLICATION
+MVC RESPONSIBILITIES AND CONCERNS
+
+1. MODEL
+
+The Model is responsible for managing the task data and the main task-related
+logic of the application.
+
+Responsibilities:
+- Represent each task and its information.
+- Store task details such as task ID, title, description and completion status.
+- Create new tasks.
+- Read and retrieve existing tasks.
+- Update task information.
+- Delete tasks.
+- Mark tasks as complete.
+- Read task data from the file.
+- Save changes back to the file.
+
+Concerns:
+- Data management.
+- Task validation and business rules.
+- File storage and retrieval.
+- Keeping task data consistent.
+
+2. VIEW
+
+The View is responsible for what the user sees and for collecting user input.
+
+Responsibilities:
+- Display the task list.
+- Display task details.
+- Provide options to create, view, update and delete tasks.
+- Allow the user to enter task information.
+- Show success and error messages.
+- Show whether a task has been completed.
+
+Concerns:
+- User interface and presentation.
+- Clear and understandable output.
+- Collecting input from the user.
+- Displaying responses from the Controller.
+
+3. CONTROLLER
+
+The Controller connects the View and Model. It receives requests from the
+user interface and decides which Model operation should be performed.
+
+Responsibilities:
+- Receive input from the View.
+- Validate or check user requests before processing them.
+- Call the appropriate Model operation.
+- Handle create, read, update and delete requests.
+- Request updated information from the Model.
+- Send the appropriate result back to the View.
+
+Concerns:
+- Application flow.
+- Handling user actions.
+- Coordinating communication between View and Model.
+- Keeping presentation logic separate from data and business logic.
+
+MVC FLOW
+
+User -> View -> Controller -> Model -> File Storage
+
+The Model handles the data, the View handles presentation and user interaction,
+and the Controller coordinates the requests between them.
