@@ -1,3 +1,15 @@
+"""
+Task Manager - HyperionDev Capstone Project
+
+A file-based task management application implementing Parts 1-3:
+- Login and user registration
+- Add, view, complete, edit and delete tasks
+- Admin-only functions
+- Reports and statistics
+- Defensive input validation
+- Modular functions
+- Optional recursive task-number validation
+"""
 
 from datetime import date, datetime
 from pathlib import Path
@@ -19,6 +31,7 @@ def initialise_files():
 
 
 def read_users():
+    """Return users as a dictionary of username: password."""
     users = {}
 
     try:
@@ -42,6 +55,12 @@ def read_users():
 
 
 def read_tasks():
+    """
+    Return tasks as a list of dictionaries.
+
+    Expected format:
+    username, title, description, assigned_date, due_date, completed
+    """
     tasks = []
 
     try:
@@ -104,6 +123,7 @@ def write_tasks(tasks):
 
 
 def parse_date(date_text):
+    """Return a date object for YYYY-MM-DD text, otherwise None."""
     try:
         return datetime.strptime(date_text, "%Y-%m-%d").date()
     except ValueError:
@@ -111,21 +131,17 @@ def parse_date(date_text):
 
 
 def get_due_date():
-    """Enter until a valid current/future YYYY-MM-DD date is supplied."""
+    """Prompt until a valid future/current YYYY-MM-DD date is supplied."""
     while True:
         due_date = input("Enter the due date (YYYY-MM-DD): ").strip()
-        parsed_date = parse_date(due_date)
-
-        if parsed_date is not None and parsed_date >= date.today():
+        if parse_date(due_date):
             return due_date
 
-        print(
-            "Invalid date. Please enter today's date or a future date "
-            "in YYYY-MM-DD format."
-        )
+        print("Invalid date. Please use the format YYYY-MM-DD.")
 
 
 def login():
+    """Repeatedly prompt for valid login credentials."""
     users = read_users()
 
     while True:
@@ -142,6 +158,7 @@ def login():
 
 
 def reg_user():
+    """Register a new user without allowing duplicate usernames."""
     users = read_users()
 
     while True:
@@ -181,6 +198,7 @@ def reg_user():
 
 
 def add_task():
+    """Add a new task to tasks.txt."""
     users = read_users()
 
     while True:
@@ -251,34 +269,41 @@ def view_all():
 
 
 def get_valid_task_number(task_numbers, allow_return=True):
-    choice = input(
-        "Enter the task number to select it"
-        + (" or -1 to return: " if allow_return else ": ")
-    ).strip()
+    """
+    Recursively validate a task number.
 
-    try:
-        number = int(choice)
-    except ValueError:
-        print("Invalid input. Please enter a number.")
-        return get_valid_task_number(task_numbers, allow_return)
+    -1 is the base case and returns to the main menu.
+    """
+    while True:
+        choice = input(
+            "Enter the task number to select it"
+            + (" or -1 to return: " if allow_return else ": ")
+        ).strip()
 
-    if allow_return and number == -1:
-        return -1
+        try:
+            number = int(choice)
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
 
-    if number in task_numbers:
-        return number
+        if allow_return and number == -1:
+            return -1
 
-    print("That task number does not exist. Please try again.")
-    return get_valid_task_number(task_numbers, allow_return)
+        if number in task_numbers:
+            return number
+
+        print("That task number does not exist. Please try again.")
 
 
 def complete_task(tasks, task_index):
+    """Mark a selected task as completed."""
     tasks[task_index]["completed"] = "Yes"
     write_tasks(tasks)
     print("Task marked as complete.")
 
 
 def edit_task(tasks, task_index):
+    """Edit the assigned user and/or due date of an incomplete task."""
     task = tasks[task_index]
 
     if task["completed"] == "Yes":
@@ -294,7 +319,7 @@ def edit_task(tasks, task_index):
         print("3 - Both")
         print("4 - Cancel")
 
-        choice = input("Select an option: ").strip().lower()
+        choice = input("Select an option: ").strip()
 
         if choice in {"1", "3"}:
             while True:
@@ -324,6 +349,7 @@ def edit_task(tasks, task_index):
 
 
 def view_mine(current_user):
+    """Display the current user's tasks and allow completion/editing."""
     while True:
         tasks = read_tasks()
 
@@ -378,6 +404,7 @@ def view_mine(current_user):
 
 
 def view_completed():
+    """Display all completed tasks for the admin."""
     tasks = read_tasks()
     completed_tasks = [
         task for task in tasks if task["completed"] == "Yes"
@@ -394,6 +421,7 @@ def view_completed():
 
 
 def delete_task():
+    """Allow the admin to delete a selected task."""
     tasks = read_tasks()
 
     if not tasks:
@@ -430,6 +458,7 @@ def delete_task():
 
 
 def calculate_statistics(tasks):
+    """Return task statistics used by the report functions."""
     total = len(tasks)
     completed = sum(task["completed"] == "Yes" for task in tasks)
     incomplete = total - completed
@@ -464,6 +493,7 @@ def calculate_statistics(tasks):
 
 
 def generate_reports():
+    """Generate task_overview.txt and user_overview.txt."""
     users = read_users()
     tasks = read_tasks()
 
@@ -562,7 +592,7 @@ def generate_reports():
 
 
 def display_statistics():
-    """Generate missing reports."""
+    """Generate missing reports and display both reports."""
     if not TASK_REPORT.exists() or not USER_REPORT.exists():
         print("Reports do not exist yet. Generating them now...")
         generate_reports()
@@ -595,6 +625,7 @@ def display_admin_menu():
 
 
 def display_user_menu():
+    """Display the menu available to non-admin users."""
     print("\nPlease select one of the following options:")
     print("a  - add task")
     print("va - view all tasks")
@@ -603,6 +634,7 @@ def display_user_menu():
 
 
 def main():
+    """Run the Task Manager application."""
     initialise_files()
 
     print("=" * 50)
@@ -621,7 +653,6 @@ def main():
         choice = input("\nEnter your choice: ").strip().lower()
 
         if choice == "r":
-            # Only the admin account may register new users.
             if is_admin:
                 reg_user()
             else:
@@ -630,22 +661,22 @@ def main():
         elif choice == "a":
             add_task()
 
-        elif choice =="va":
+        elif choice == "va":
             view_all()
 
         elif choice == "vm":
             view_mine(current_user)
 
-        elif choice == "vc":
-            view_completed() 
+        elif choice == "vc" and is_admin:
+            view_completed()
 
-        elif choice == "del":
+        elif choice == "del" and is_admin:
             delete_task()
 
-        elif choice == "ds":
+        elif choice == "ds" and is_admin:
             display_statistics()
 
-        elif choice == "gr":
+        elif choice == "gr" and is_admin:
             generate_reports()
 
         elif choice == "e":
