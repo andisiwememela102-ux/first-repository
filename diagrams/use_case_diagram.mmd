@@ -1,0 +1,14 @@
+flowchart LR
+    User([User])
+    subgraph Sticky_Notes_Application[Sticky Notes Application]
+        List[View all notes]
+        View[View one note]
+        Create[Create a note]
+        Edit[Edit a note]
+        Delete[Delete a note]
+    end
+    User --> List
+    User --> View
+    User --> Create
+    User --> Edit
+    User --> Delete

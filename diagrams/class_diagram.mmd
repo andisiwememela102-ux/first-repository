@@ -1,0 +1,24 @@
+classDiagram
+    class Note {
+        +BigAutoField id
+        +CharField title
+        +TextField content
+        +DateTimeField created_at
+        +DateTimeField updated_at
+        +__str__() str
+        +get_absolute_url() str
+    }
+    class NoteForm {
+        +Meta model = Note
+        +Meta fields = title, content
+    }
+    class Views {
+        +note_list(request)
+        +note_detail(request, pk)
+        +note_create(request)
+        +note_update(request, pk)
+        +note_delete(request, pk)
+    }
+    NoteForm ..> Note : validates and edits
+    Views ..> NoteForm : uses
+    Views ..> Note : reads and writes

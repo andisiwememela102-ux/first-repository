@@ -1,0 +1,22 @@
+sequenceDiagram
+    actor User
+    participant Browser
+    participant View as Django View
+    participant Form as NoteForm
+    participant Model as Note Model
+    participant DB as SQLite Database
+
+    User->>Browser: Submit new note
+    Browser->>View: POST /notes/new/
+    View->>Form: Validate submitted data
+    Form-->>View: Valid form
+    View->>Model: Save note
+    Model->>DB: INSERT note
+    DB-->>Model: Saved note
+    Model-->>View: Note instance
+    View-->>Browser: Redirect to note detail
+    Browser->>View: GET /notes/{id}/
+    View->>Model: Find note by primary key
+    Model->>DB: SELECT note
+    DB-->>Model: Note record
+    View-->>Browser: Render note detail page
