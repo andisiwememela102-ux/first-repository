@@ -42,7 +42,7 @@ sticky_notes_submission/
 
 ## Design diagrams
 
-The diagrams are available in formats suitable for viewing and submission. Start with the combined PDF or the diagram images:
+The diagrams are available in formats suitable for viewing and submission:
 
 - [Combined design diagrams (PDF)](diagrams/sticky_notes_diagrams.pdf)
 - [Use-case diagram (PNG)](diagrams/images/use_case_diagram.png)
