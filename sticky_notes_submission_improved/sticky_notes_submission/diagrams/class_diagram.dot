@@ -1,0 +1,28 @@
+digraph G {
+ graph [rankdir=TB, bgcolor="white", pad="0.3", nodesep="0.55", ranksep="0.65", label="STICKY NOTES • CLASS DIAGRAM", labelloc=t, fontsize=22, fontname="Arial", fontcolor="#17324D"];
+ node [shape=plain, fontname="Arial"];
+ edge [fontname="Arial", fontsize=10, color="#52677D", arrowsize=0.8];
+ Note [label=<
+ <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#B8C9D9">
+ <TR><TD BGCOLOR="#17324D"><FONT COLOR="white" POINT-SIZE="15"><B>Note</B></FONT></TD></TR>
+ <TR><TD ALIGN="LEFT" BGCOLOR="#F2F7FB">+ id: BigAutoField<BR ALIGN="LEFT"/>+ title: CharField (max 120)<BR ALIGN="LEFT"/>+ content: TextField<BR ALIGN="LEFT"/>+ created_at: DateTimeField<BR ALIGN="LEFT"/>+ updated_at: DateTimeField</TD></TR>
+ <TR><TD ALIGN="LEFT" BGCOLOR="#FFFFFF">+ __str__(): str<BR ALIGN="LEFT"/>+ get_absolute_url(): str</TD></TR>
+ </TABLE>>];
+ Form [label=<
+ <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#B8C9D9">
+ <TR><TD BGCOLOR="#176B87"><FONT COLOR="white" POINT-SIZE="14"><B>NoteForm</B></FONT></TD></TR>
+ <TR><TD ALIGN="LEFT" BGCOLOR="#F2FAFC">ModelForm for Note</TD></TR>
+ <TR><TD ALIGN="LEFT">Validates title and content<BR ALIGN="LEFT"/>Used for create and edit</TD></TR>
+ </TABLE>>];
+ Views [label=<
+ <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9" COLOR="#B8C9D9">
+ <TR><TD BGCOLOR="#287D5A"><FONT COLOR="white" POINT-SIZE="14"><B>View functions</B></FONT></TD></TR>
+ <TR><TD ALIGN="LEFT" BGCOLOR="#F2FAF5">note_list(request)<BR ALIGN="LEFT"/>note_detail(request, pk)<BR ALIGN="LEFT"/>note_create(request)<BR ALIGN="LEFT"/>note_update(request, pk)<BR ALIGN="LEFT"/>note_delete(request, pk)</TD></TR>
+ </TABLE>>];
+ DB [shape=cylinder, style=filled, fillcolor="#FFF4D6", color="#D9A441", fontname="Arial", label="SQLite database\nNote records", width=1.8, height=0.9];
+ {rank=same; Views; Form; Note;}
+ Views -> Form [label="uses form", dir=both];
+ Form -> Note [label="validates / saves", dir=both];
+ Views -> Note [label="queries / updates", dir=both];
+ Note -> DB [label="ORM persistence", dir=both];
+}

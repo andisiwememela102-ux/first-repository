@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}All Notes | Sticky Notes{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">YOUR SPACE</p>
+        <h1>All your notes</h1>
+        <p class="muted">Keep reminders, ideas and little things in one place.</p>
+    </div>
+    <a class="button" href="{% url 'note_create' %}">Create a note</a>
+</section>
+
+{% if notes %}
+    <section class="notes-grid" aria-label="Sticky notes">
+        {% for note in notes %}
+            <article class="note-card">
+                <h2><a href="{% url 'note_detail' pk=note.pk %}">{{ note.title }}</a></h2>
+                <p class="note-content">{{ note.content|truncatechars:180 }}</p>
+                <p class="note-date">Updated {{ note.updated_at|date:"d M Y, H:i" }}</p>
+                <div class="card-actions">
+                    <a href="{% url 'note_detail' pk=note.pk %}">Open</a>
+                    <a href="{% url 'note_update' pk=note.pk %}">Edit</a>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% else %}
+    <section class="empty-state">
+        <div class="empty-icon" aria-hidden="true">✎</div>
+        <h2>No notes yet</h2>
+        <p>Your first note can be a reminder, an idea or anything you want to remember.</p>
+        <a class="button" href="{% url 'note_create' %}">Write your first note</a>
+    </section>
+{% endif %}
+{% endblock %}
