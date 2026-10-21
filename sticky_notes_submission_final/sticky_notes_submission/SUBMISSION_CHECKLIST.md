@@ -17,4 +17,3 @@
 - [x] `research_answers.md` with both requested research paragraphs
 - [x] No virtual environment or generated database included
 
-Before submitting, run `python manage.py check` and `python manage.py test` locally.
