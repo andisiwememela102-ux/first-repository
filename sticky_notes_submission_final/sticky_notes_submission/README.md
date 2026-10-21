@@ -119,9 +119,3 @@ SVG and per-diagram PDF versions are in the same folder. The `.mmd` files in `di
 ## Research notes
 
 `research_answers.md` contains the requested research on how web applications preserve state across HTTP requests and how Django migrations can be used with a server-based database such as MariaDB.
-
-## Before submitting
-
-- Run `python manage.py check` and `python manage.py test`.
-- Include the project source, migration files, README, research answers and the diagram images/PDFs.
-- Do not include `.venv/`, secrets, or a local development database in the repository.
