@@ -30,4 +30,4 @@ Shows the create-note workflow: the browser posts the form, the view validates i
 
 ## Editable sources
 
-The `source/` folder holds the Mermaid (`.mmd`) versions of the diagrams. They are only editing sources; use the files above for viewing or marking.
+The `source/` folder holds the Mermaid (`.mmd`) versions of the diagrams.
