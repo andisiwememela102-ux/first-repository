@@ -1,0 +1,31 @@
+classDiagram
+    direction LR
+    class Note {
+        +BigAutoField id
+        +CharField title
+        +TextField content
+        +DateTimeField created_at
+        +DateTimeField updated_at
+        +__str__() str
+        +get_absolute_url() str
+    }
+    class NoteForm {
+        +Meta model = Note
+        +Meta fields = title, content
+        +validate submitted data
+    }
+    class Views {
+        +note_list(request)
+        +note_detail(request, pk)
+        +note_create(request)
+        +note_update(request, pk)
+        +note_delete(request, pk)
+    }
+    class SQLiteDatabase {
+        <<database>>
+        Note records
+    }
+    Views ..> NoteForm : validates input
+    NoteForm ..> Note : creates or updates
+    Views ..> Note : queries and deletes
+    Note --> SQLiteDatabase : Django ORM

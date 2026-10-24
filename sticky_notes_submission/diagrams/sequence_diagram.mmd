@@ -1,0 +1,28 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant Browser
+    participant View as Django note_create view
+    participant Form as NoteForm
+    participant Model as Note model / ORM
+    participant DB as SQLite database
+
+    User->>Browser: Enter note and submit
+    Browser->>View: POST /notes/new/
+    View->>Form: Validate submitted data
+    Form-->>View: Return validation result
+    alt Form is valid
+        View->>Model: Save note
+        Model->>DB: INSERT note
+        DB-->>Model: Saved record
+        Model-->>View: Note instance
+        View-->>Browser: Redirect to note detail
+        Browser->>View: GET /notes/{id}/
+        View->>Model: Fetch note by primary key
+        Model->>DB: SELECT note
+        DB-->>Model: Note record
+        Model-->>View: Note instance
+        View-->>Browser: Render detail page
+    else Form is invalid
+        View-->>Browser: Re-render form with errors
+    end

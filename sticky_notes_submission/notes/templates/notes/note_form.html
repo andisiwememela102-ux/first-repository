@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ page_heading }} | Sticky Notes{% endblock %}
+{% block content %}
+<div class="back-link"><a href="{% url 'note_list' %}">← All notes</a></div>
+<section class="form-card">
+    <p class="eyebrow">MAKE IT A NOTE</p>
+    <h1>{{ page_heading }}</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="form-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+        {% for field in form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+                {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+        {% endfor %}
+        <div class="form-actions">
+            <button class="button" type="submit">Save note</button>
+            <a class="button button-muted" href="{% url 'note_list' %}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

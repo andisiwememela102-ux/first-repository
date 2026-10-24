@@ -1,0 +1,26 @@
+digraph G {
+ graph [rankdir=TB, bgcolor="white", pad="0.3", nodesep="0.35", ranksep="0.48", label="STICKY NOTES • CREATE NOTE SEQUENCE", labelloc=t, fontsize=22, fontname="Arial", fontcolor="#17324D"];
+ node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10, color="#B8C9D9", fontcolor="#17324D", margin="0.12,0.08"];
+ edge [fontname="Arial", fontsize=9, color="#52677D", arrowsize=0.75];
+ User [fillcolor="#FFF4D6", label="User"];
+ Browser [fillcolor="#F2F7FB", label="Browser"];
+ View [fillcolor="#EAF6EF", label="Django view\nnote_create"];
+ Form [fillcolor="#EAF7FA", label="NoteForm"];
+ Model [fillcolor="#F2F7FB", label="Note model / ORM"];
+ DB [shape=cylinder, fillcolor="#FFF4D6", label="SQLite database"];
+ User -> Browser [label="1. Enter note and submit"];
+ Browser -> View [label="2. POST /notes/new/"];
+ View -> Form [label="3. Validate submitted data"];
+ Form -> View [label="4. Return validation result"];
+ View -> Model [label="5. Save valid note"];
+ Model -> DB [label="6. INSERT note"];
+ DB -> Model [label="7. Return saved record"];
+ Model -> View [label="8. Saved Note instance"];
+ View -> Browser [label="9. Redirect to note detail"];
+ Browser -> View [label="10. GET /notes/<id>/"];
+ View -> Model [label="11. Fetch note by primary key"];
+ Model -> DB [label="12. SELECT note"];
+ DB -> Model [label="13. Return note record"];
+ Model -> View [label="14. Note instance"];
+ View -> Browser [label="15. Render detail page"];
+}

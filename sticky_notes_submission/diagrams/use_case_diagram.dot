@@ -1,0 +1,17 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="white", pad="0.3", nodesep="0.45", ranksep="0.65", label="STICKY NOTES • USE-CASE DIAGRAM", labelloc=t, fontsize=22, fontname="Arial", fontcolor="#17324D", compound=true];
+ node [fontname="Arial", fontsize=11, color="#176B87", fontcolor="#17324D"];
+ edge [color="#52677D", arrowsize=0.8, penwidth=1.2];
+ User [shape=ellipse, style=filled, fillcolor="#FFF4D6", color="#D9A441", label="User"];
+ subgraph cluster_app {
+  label="Sticky Notes Application"; labelloc=t; fontsize=14; fontname="Arial"; fontcolor="#176B87";
+  style="rounded"; color="#B8C9D9"; bgcolor="#F7FAFD"; margin=22;
+  List [shape=box, style="rounded,filled", fillcolor="#FFFFFF", label="View all notes"];
+  Detail [shape=box, style="rounded,filled", fillcolor="#FFFFFF", label="View one note"];
+  Create [shape=box, style="rounded,filled", fillcolor="#FFFFFF", label="Create a note"];
+  Edit [shape=box, style="rounded,filled", fillcolor="#FFFFFF", label="Edit a note"];
+  Delete [shape=box, style="rounded,filled", fillcolor="#FFFFFF", label="Delete a note"];
+  {rank=same; List; Detail; Create; Edit; Delete;}
+ }
+ User -> List; User -> Detail; User -> Create; User -> Edit; User -> Delete;
+}
