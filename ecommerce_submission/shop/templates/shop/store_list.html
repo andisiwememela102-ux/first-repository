@@ -1,0 +1,1 @@
+{% extends 'shop/base.html' %}{% block content %}<h1>Stores</h1>{% for store in stores %}<div class="card"><h2><a href="{% url 'store_detail' store.id %}">{{ store.name }}</a></h2><p>{{ store.description }}</p><p class="muted">Vendor: {{ store.owner.username }}</p></div>{% empty %}<p>No stores have been created yet.</p>{% endfor %}{% endblock %}
