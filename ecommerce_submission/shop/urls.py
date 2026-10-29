@@ -22,6 +22,8 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     path('orders/<int:order_id>/', views.invoice, name='invoice'),
     path('products/<int:product_id>/review/', views.review_create, name='review_create'),
+    path('reviews/<int:review_id>/edit/', views.review_edit, name='review_edit'),
+    path('reviews/<int:review_id>/delete/', views.review_delete, name='review_delete'),
     path('password/forgot/', views.forgot_password, name='forgot_password'),
     path('password/reset/<str:token>/', views.reset_password, name='reset_password'),
 ]

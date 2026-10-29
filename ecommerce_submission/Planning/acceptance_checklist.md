@@ -14,3 +14,9 @@
 - [x] Authentication and ownership checks included.
 - [x] Practical Task 2 research notes included.
 - [x] Automated tests included.
+
+## Before submitting
+- [ ] Install dependencies and run `python manage.py check`.
+- [ ] Run `python manage.py migrate` and `python manage.py test` in a Django-enabled environment.
+- [ ] If required by your course, configure MariaDB and confirm migrations against that server.
+- [ ] Replace development secret key and set `DEBUG=False` before deployment.

@@ -1,2 +1,2 @@
+# Required for the default SQLite development and test setup.
 Django>=5.2,<6.0
-mysqlclient>=2.2; platform_system != "Windows"

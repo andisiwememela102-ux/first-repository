@@ -1,1 +1,31 @@
-{% extends 'shop/base.html' %}{% block content %}<h1>Your cart</h1>{% for row in rows %}<div class="card"><h3><a href="{% url 'product_detail' row.product.id %}">{{ row.product.name }}</a></h3><p>R{{ row.product.price }} each · Line total R{{ row.line_total }}</p><form method="post" action="{% url 'cart_update' row.product.id %}">{% csrf_token %}<label>Quantity <input type="number" name="quantity" min="1" max="{{ row.product.stock }}" value="{{ row.quantity }}"></label><button type="submit">Update</button></form><form method="post" action="{% url 'cart_remove' row.product.id %}">{% csrf_token %}<button type="submit">Remove</button></form></div>{% empty %}<p>Your cart is empty.</p>{% endfor %}<h2>Total: R{{ total }}</h2>{% if rows %}<form method="post" action="{% url 'checkout' %}">{% csrf_token %}<button type="submit">Checkout</button></form>{% endif %}{% endblock %}
+{% extends 'shop/base.html' %}
+{% block title %}Your Cart | MarketPlace{% endblock %}
+{% block content %}
+<h1>Your cart</h1>
+{% if rows %}
+  <p class="muted">Review your items below. You can continue browsing and add more products before checkout.</p>
+  {% for row in rows %}
+    <div class="card">
+      <h3><a href="{% url 'product_detail' row.product.id %}">{{ row.product.name }}</a></h3>
+      <p>R{{ row.product.price }} each · Line total R{{ row.line_total }}</p>
+      <form method="post" action="{% url 'cart_update' row.product.id %}">{% csrf_token %}
+        <label>Quantity <input type="number" name="quantity" min="1" max="{{ row.product.stock }}" value="{{ row.quantity }}" required></label>
+        <button type="submit">Update quantity</button>
+      </form>
+      <form method="post" action="{% url 'cart_remove' row.product.id %}">{% csrf_token %}<button type="submit" class="secondary">Remove item</button></form>
+    </div>
+  {% endfor %}
+  <h2>Total: R{{ total }}</h2>
+  <div class="cart-actions">
+    <a class="button-link secondary-link" href="{% url 'home' %}">← Continue Shopping</a>
+    <form method="post" action="{% url 'checkout' %}">{% csrf_token %}<button type="submit" class="primary-button">Checkout</button></form>
+  </div>
+{% else %}
+  <div class="card empty-cart">
+    <h2>Your cart is empty</h2>
+    <p>Browse our stores and add products to your cart. Your selected products will appear here.</p>
+    <a class="button-link" href="{% url 'store_list' %}">Browse Stores</a>
+    <a class="button-link secondary-link" href="{% url 'home' %}">Browse Products</a>
+  </div>
+{% endif %}
+{% endblock %}

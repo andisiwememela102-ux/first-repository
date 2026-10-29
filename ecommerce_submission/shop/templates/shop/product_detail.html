@@ -1,1 +1,19 @@
-{% extends 'shop/base.html' %}{% block content %}<h1>{{ product.name }}</h1><p>{{ product.description }}</p><p>Store: <a href="{% url 'store_detail' product.store.id %}">{{ product.store.name }}</a></p><p class="price">R{{ product.price }}</p><p>{{ product.stock }} in stock</p>{% if user.is_authenticated and user != product.store.owner %}<form method="post" action="{% url 'cart_add' product.id %}">{% csrf_token %}<label>Quantity <input type="number" name="quantity" min="1" max="{{ product.stock }}" value="1"></label><button type="submit">Add to cart</button></form>{% endif %}{% if user == product.store.owner %}<p><a href="{% url 'product_edit' product.id %}">Edit product</a> · <a href="{% url 'product_delete' product.id %}">Delete product</a></p>{% endif %}<h2>Reviews</h2>{% if user.is_authenticated %}<p><a href="{% url 'review_create' product.id %}">Write a review</a></p>{% endif %}{% for review in reviews %}<div class="card"><strong>{{ review.rating }}/5</strong> by {{ review.buyer.username }} {% if review.verified %}<span>✓ Verified purchase</span>{% else %}<span>Unverified review</span>{% endif %}<p>{{ review.comment }}</p></div>{% empty %}<p>No reviews yet.</p>{% endfor %}{% endblock %}
+{% extends 'shop/base.html' %}
+{% block title %}{{ product.name }} | MarketPlace{% endblock %}
+{% block content %}
+<h1>{{ product.name }}</h1><p>{{ product.description|default:'No description provided.' }}</p>
+<p>Store: <a href="{% url 'store_detail' product.store.id %}">{{ product.store.name }}</a></p>
+<p class="price">R{{ product.price }}</p><p>{{ product.stock }} in stock</p>
+{% if user.is_authenticated and user.profile.role == 'buyer' and user != product.store.owner %}
+  {% if product.stock > 0 %}<form method="post" action="{% url 'cart_add' product.id %}">{% csrf_token %}<label>Quantity <input type="number" name="quantity" min="1" max="{{ product.stock }}" value="1" required></label><button type="submit">Add to cart</button></form>{% else %}<p class="muted">This product is currently out of stock.</p>{% endif %}
+{% endif %}
+{% if user == product.store.owner %}<p><a href="{% url 'product_edit' product.id %}">Edit product</a> · <a href="{% url 'product_delete' product.id %}">Delete product</a></p>{% endif %}
+<h2>Reviews</h2>
+{% if user.is_authenticated and user.profile.role == 'buyer' %}<p><a href="{% url 'review_create' product.id %}">Write a review</a></p>{% endif %}
+{% for review in reviews %}
+  <div class="card"><strong>{{ review.rating }}/5</strong> by {{ review.buyer.username }} {% if review.verified %}<span>✓ Verified purchase</span>{% else %}<span>Unverified review</span>{% endif %}
+    <p>{{ review.comment }}</p><p class="muted">{{ review.created_at|date:'j M Y, H:i' }}</p>
+    {% if user.is_authenticated and user == review.buyer %}<p><a href="{% url 'review_edit' review.id %}">Edit your review</a> · <a href="{% url 'review_delete' review.id %}">Delete your review</a></p>{% endif %}
+  </div>
+{% empty %}<p>No reviews yet.</p>{% endfor %}
+{% endblock %}
